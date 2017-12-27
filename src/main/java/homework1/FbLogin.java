@@ -14,21 +14,20 @@ public class FbLogin {
         driver.get("https://www.facebook.com/");
         Thread.sleep(2000);
 
-        WebElement emailField = driver.findElement(By.id("email"));
+        WebElement emailField = driver.findElement(By.xpath("//*[@id=\"email\"]"));
         emailField.clear();
         emailField.sendKeys("Vika.smile1993@mail.ru");
 
-        WebElement passField = driver.findElement(By.id("pass"));
-        emailField.clear();
-        emailField.sendKeys("Fruttini32");
+        WebElement passField = driver.findElement(By.xpath("//*[@id=\"pass\"]"));
+        passField.clear();
+        passField.sendKeys("Fruttini32");
 
-        driver.findElement(By.id("#u_0_2")).click();
+        driver.findElement(By.xpath("//*[@id=\"u_0_a\"]")).click();
         Thread.sleep(3000);
 
         System.out.println("TITLE: " + driver.getTitle());
 
         driver.quit();
-        driver.close();
 
 
     }
