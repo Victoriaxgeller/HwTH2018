@@ -7,24 +7,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.List;
 
-/**
- * Created by Victoria on 14.12.17.
- */
-public class SeatsAvailability {
+public class LiniaKino {
     public static void main(String[] args) throws InterruptedException {
-
-        //System.setProperty("webdriver.chrome.driver", "/Users/Victoria/WebDrivers/chromedriver");
-
-
 
         WebDriver driver = new ChromeDriver();
         driver.get("http://liniakino.com/showtimes/aladdin/");
-        //driver.findElement(By.xpath("//*[@id='closeButton']")).click();
-        //driver.findElement(By.xpath("//*[@class='showtime-movie'][1]/div[@class='showtime']/div[1]//li[@class='showtime-item'][1]/a")).click();
+
+        // WebElement 3DSeans =
+        //   driver.findElement(By.xpath("//*[@id=\"content-inner\"]/div/div/a[2]")).click();
+
+        driver.findElement(By.xpath("//*[@id=\"content-inner\"]/div/ul/li[3]/div[2]/div[1]/div/ul/li/a")).click();
 
         Thread.sleep(5000);
 
-        WebElement starWarsFrame = driver.findElement(By.xpath("//*[@class='arcticmodal-container_i']//iframe"));
+
+        WebElement starWarsFrame = driver.findElement(By.xpath("//*[@id=\"vkino-widget\"]/iframe"));
         driver.switchTo().frame(starWarsFrame);
 
         List<WebElement> atAllSeats = driver.findElements(By.xpath("//*[@id='hall-scheme-container']/div/child::div"));
