@@ -42,39 +42,51 @@ public class Akinator {
         ageField.clear();
         ageField.sendKeys(age);
 
-
+        //нажимаю кнопки начать
         driver.findElement(By.cssSelector("#infos-area-footer > input[type=\"submit\"]")).click();
 
         Thread.sleep(1000);
 
 
-//        String question = driver.findElement(By.cssSelector("#bulle-inner")).getText();
-
         boolean flag = true;
 
-//        while(question.e){
+        //   String question = null;
 
-        String question = null;
 
+        WebElement reponse1 = driver.findElement(By.id("reponse1"));
+        WebElement reponse2 = driver.findElement(By.id("reponse2"));
+        WebElement reponse3 = driver.findElement(By.id("reponse3"));
+        WebElement reponse4 = driver.findElement(By.id("reponse4"));
+        WebElement reponse5 = driver.findElement(By.id("reponse5"));
 
         try {
 
-            while (flag)
-                question = driver.findElement(By.cssSelector("#bulle-inner")).getText();
-            System.out.println(question);
-            System.out.println();
-            System.out.println("да - 1 \n" + "нет - 2 \n");
-            int answer = sc.nextInt();
+            while (flag) {
+                String question = driver.findElement(By.id("bulle-inner")).getText();
+                System.out.println(question);
+                System.out.println();
+                System.out.println("да - 1 \n" + "нет - 2 \n" + "я не знаю - 3 \n" + "Возможно частично - 4 \n" + "Скорее нет не совсем - 5 \n");
+                int answer = sc.nextInt();
 
-            switch (answer) {
-                case 1:
-                    System.out.println("decd");
-                    break;
-                case 2:
-                    System.out.println("decvbcfgbdfbdfbd");
-                    break;
+                switch (answer) {
+                    case 1:
+                        reponse1.click();
+                        break;
+                    case 2:
+                        reponse2.click();
+                        break;
+                    case 3:
+                        reponse3.click();
+                        break;
+                    case 4:
+                        reponse4.click();
+                        break;
+                    case 5:
+                        reponse5.click();
+                        break;
+                }
+                //Thread.sleep(2000);
             }
-
         } catch (Exception e) {
             System.out.println("jhagshjcb");
 
