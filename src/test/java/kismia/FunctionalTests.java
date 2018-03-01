@@ -1,8 +1,11 @@
 package kismia;
 
+import io.qameta.allure.Step;
 import kismia.MainPage;
 import lesson10.DriverEventListener;
+import lessonTrelloApi.serDeser.SerializationWorker;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,6 +16,7 @@ import static org.testng.Assert.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -74,11 +78,52 @@ public class FunctionalTests {
 
     }
 
-    @AfterTest
-    public void quit() {
-        driver.quit();
-        // driver.close();
+    @Test(priority = 2)
+    public void getAndSetCookie() throws IOException, InterruptedException {
+        Set<Cookie> cookies = driver.manage().getCookies();
+
+        SerializationWorker.serializeStorage(cookies, "kismiaCookies");
+        System.out.println("UYTYRTYRTRTRTRTY" + cookies);
+
     }
+
+    @Test(priority = 3)
+    public void LogOut() throws IOException, InterruptedException {
+
+    }
+
+    @Test(priority = 4)
+    public void loadCookies() throws InterruptedException {
+        driver.get("https://kismia.com");
+
+        Set<Cookie> cookies = (Set<Cookie>) SerializationWorker.deserialzeStorage("kismiaCookies");
+        for (Cookie cookie : cookies) {
+            driver.manage().addCookie(cookie);
+        }
+        // Open Page with Cookies
+        driver.get("https://kismia.com");
+        Thread.sleep(10000);
+
+        System.out.println("TETTETTETTETETTETETTETE " + cookies);
+        driver.get("https://kismia.com/matches");
+        Thread.sleep(10000);
+    }
+
+    @Test(priority = 5)
+    public void sendMessage() throws InterruptedException {
+        driver.get("https://kismia.com/thread17624531");
+        Thread.sleep(10000);
+
+        driver.findElement(By.cssSelector(".chat-controls__textarea")).sendKeys("Hello");
+
+    }
+
+
+//    @AfterTest
+//    public void quit() {
+//        driver.quit();
+//        // driver.close();
+//    }
 
 
 //    @BeforeSuite
